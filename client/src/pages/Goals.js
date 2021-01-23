@@ -42,6 +42,7 @@ function Goals(){
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
   function handleFormSubmit(event) {
+    console.log("tay");
     event.preventDefault();
     if (formObject.name && formObject.date) {
       API.saveGoal({
@@ -75,17 +76,25 @@ function Goals(){
             <TextArea
               onChange={handleInputChange}
               name="synopsis"
-              placeholder="Synopsis (Optional)"
+              placeholder="reason (Optional)"
             />
             <FormBtn
-              disabled={!(formObject.author && formObject.title)}
+              //disabled={!(formObject.name && formObject.date)}
               onClick={handleFormSubmit}
             >
-              Submit Goal
+              Add Goal
+            </FormBtn>
+
+            <FormBtn
+              //disabled={!(formObject.name && formObject.date)}
+              onClick={handleFormSubmit}
+            >
+              All Done
             </FormBtn>
           </form>
         </Col>
         <Col size="md-6 sm-12">
+          <hr></hr>
           <Jumbotron>
             <h1>My Goals List</h1>
           </Jumbotron>
@@ -95,7 +104,7 @@ function Goals(){
                 <ListItem key={goal._id}>
                   <Link to={"/goals/" + goal._id}>
                     <strong>
-                      {goal.goal} by {goal.date}
+                      {goal.name} by {goal.date}
                     </strong>
                   </Link>
                   <DeleteBtn onClick={() => deleteGoals(goal._id)} />
