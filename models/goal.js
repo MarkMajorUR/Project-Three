@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+
 const User = require("./user");
 const Schema = mongoose.Schema;
 
@@ -12,4 +13,5 @@ const goalSchema = new Schema({
 
 const Goal = mongoose.model("Goal", goalSchema);
 
-module.exports = Goal;
+
+module.exports = goalSchema;
