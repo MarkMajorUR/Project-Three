@@ -5,11 +5,12 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn } from "../components/Form"
+import { Input, TextArea, FormBtn, ShowDatePicker } from "../components/Form"
+
 
 function Goals(){
      // Setting our component's initial state
-  const [goal, setGoal] = useState([])
+  const [goals, setGoals] = useState([])
   const [formObject, setFormObject] = useState({})
 
   // Load all books and store them with setBooks
@@ -21,13 +22,13 @@ function Goals(){
   function loadGoals() {
     API.getGoals()
       .then(res => 
-        setGoal(res.data)
+        setGoals(res.data)
       )
       .catch(err => console.log(err));
   };
 
   // Deletes a book from the database with a given id, then reloads books from the db
-  function deleteGoals(id) {
+  function deleteGoal(id) {
     API.deleteGoal(id)
       .then(res => loadGoals())
       .catch(err => console.log(err));
@@ -49,9 +50,11 @@ function Goals(){
         name: formObject.name,
         date: formObject.date,
         synopsis: formObject.synopsis
-      })
+      }) 
         .then(res => loadGoals())
         .catch(err => console.log(err));
+    } else {
+      console.log("err");
     }
   };
   
@@ -68,8 +71,7 @@ function Goals(){
               name="goal"
               placeholder="goal (required)"
             />
-            <Input
-              onChange={handleInputChange}
+            <ShowDatePicker
               name="date"
               placeholder="date (required)"
             />
@@ -84,13 +86,6 @@ function Goals(){
             >
               Add Goal
             </FormBtn>
-
-            <FormBtn
-              //disabled={!(formObject.name && formObject.date)}
-              onClick={handleFormSubmit}
-            >
-              All Done
-            </FormBtn>
           </form>
         </Col>
         <Col size="md-6 sm-12">
@@ -98,18 +93,24 @@ function Goals(){
           <Jumbotron>
             <h1>My Goals List</h1>
           </Jumbotron>
-          {goal.length ? (
+          {goals.length ? (
             <List>
-              {goal.map(goal => (
+              {goals.map(goal => (
                 <ListItem key={goal._id}>
                   <Link to={"/goals/" + goal._id}>
                     <strong>
                       {goal.name} by {goal.date}
                     </strong>
                   </Link>
-                  <DeleteBtn onClick={() => deleteGoals(goal._id)} />
+                  <DeleteBtn onClick={() => deleteGoal(goal._id)} />
                 </ListItem>
               ))}
+              <FormBtn
+              //disabled={!(formObject.name && formObject.date)}
+              onClick={handleFormSubmit}
+            >
+              All Done
+            </FormBtn>
             </List>
           ) : (
             <h3>No Results to Display</h3>
