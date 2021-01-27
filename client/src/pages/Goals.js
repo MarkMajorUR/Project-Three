@@ -21,8 +21,9 @@ function Goals(){
   function loadGoals() {
     API.getGoals()
       .then(res => 
-        setGoal(res.data)
+        setGoal(res)
       )
+      .then(console.log({goal}))
       .catch(err => console.log(err));
   };
 
