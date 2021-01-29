@@ -5,7 +5,7 @@ import API from "../utils/API";
 import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import { Input, TextArea, FormBtn, ShowDatePicker } from "../components/Form"
+import { Input, TextArea, FormBtn } from "../components/Form"
 
 
 function Goals(){
@@ -16,7 +16,7 @@ function Goals(){
   // Load all books and store them with setBooks
   useEffect(() => {
     loadGoals()
-  }, )
+  }, [])
 
   // Loads all books and sets them to books
   function loadGoals() {
@@ -43,19 +43,18 @@ function Goals(){
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
+  const [selectedDate, setSelctedDate] = useState(new Date());
   function handleFormSubmit(event) {
     console.log("tay");
     event.preventDefault();
+    console.log(formObject);
     if (formObject.name && formObject.date) {
       API.saveGoal({
-        name: formObject.name,
+        goal: formObject.goal,
         date: formObject.date,
-        synopsis: formObject.synopsis
       }) 
         .then(res => loadGoals())
         .catch(err => console.log(err));
-    } else {
-      console.log("err");
     }
   };
   
@@ -72,9 +71,11 @@ function Goals(){
               name="goal"
               placeholder="goal (required)"
             />
-            <ShowDatePicker
+            <Input
+              onChange={handleInputChange}
               name="date"
-              placeholder="date (required)"
+              placeholder="MM/DD/YYYY"
+
             />
             <TextArea
               onChange={handleInputChange}
