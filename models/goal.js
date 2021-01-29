@@ -8,6 +8,7 @@ const goalSchema = new Schema({
   title: { type: String, required: true },
   startdate: { type: Date, required: true },
   targetdate: { type: Date, required: true },
+  reason: { type: String, required: false },
   date: { type: Date, default: Date.now }
 });
 
