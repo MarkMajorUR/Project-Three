@@ -14,7 +14,7 @@ function Detail(props) {
     API.getGoal(id)
       .then(res => setGoal(res.data))
       .catch(err => console.log(err));
-  }, [])
+  }, )
 
   return (
       <Container fluid>
