@@ -4,10 +4,13 @@ const db = require("../models");
 module.exports = {
   findAll: function(req, res) {
     db.Goal
-      .find(req.query)
-      .sort({ date: -1 })
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+        .find(req.query)
+        .sort({ date: -1 })
+        .then(dbModel => {
+          const usersGoals = dbModel.filter((goal) => goal.user_id === req.body.user_id)
+          res.json(usersGoals)
+        })
+        .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
     db.Goal

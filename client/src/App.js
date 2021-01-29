@@ -1,17 +1,18 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Books from "./pages/Goals";
+import Goals from "./pages/Goals";
+import Detail from "./pages/Detail";
 
 function App() {
   return (
     <Router>
       <div>
         <Switch>
-          <Route exact path={["/", "/books"]}>
-            <Books />
+          <Route exact path={["/", "/goals"]}>
+            <Goals />
           </Route>
-          <Route exact path="/books/:id">
-           
+          <Route exact path="/goals/:id">
+            <Detail />
           </Route>
           <Route>
             

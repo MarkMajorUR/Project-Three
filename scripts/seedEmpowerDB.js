@@ -8,7 +8,6 @@ mongoose.connect(
   "mongodb://localhost/empowerDB"
 );
 
-
 const userSeed = [
   {
     user: "bobby",
@@ -22,21 +21,21 @@ const userSeed = [
 
 const goalSeed = [
   {
-    // user_id: ,
+    user_id: "0000",
     title: "Cut down to 1 cigarette a day",
     startdate: '2021-01-16',
     targetdate: '2021-04-10', 
     date: new Date(Date.now())
   },
   {
-    // user_id: ,
+    user_id: "0000",
     title: "No drinks",
     startdate: '2021-01-16',
     targetdate: '2021-04-10', 
     date: new Date(Date.now())
   },
   {
-    // user_id: ,
+    user_id: "1111",
     title: "Switch non-alcoholic beer",
     startdate: '2021-01-16',
     targetdate: '2021-04-10', 
