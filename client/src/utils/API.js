@@ -1,4 +1,3 @@
-import Moment from 'react-moment';
 import axios from "axios";
 
 export default {
@@ -16,11 +15,7 @@ export default {
   },
   // Saves a book to the database
   saveGoal: function(goalData) {
-    // console.log(goalData);
-    // let startDate =  Moment(goalData.startDate).tz("America/New_York").format();
-    // let targetDate = goalData.targetDate;
-
-    // console.log( startDate );
+    console.log( {goalData} );
     return axios.post("/api/goals", goalData);
   }
 };
