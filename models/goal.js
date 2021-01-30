@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const goalSchema = new Schema({
   user_id: {type: Schema.Types.ObjectId, ref: 'User'},
+  // user_id: {type: String, required: false},
   title: { type: String, required: true },
   startdate: { type: Date, required: true },
   targetdate: { type: Date, required: true },
