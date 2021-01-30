@@ -7,7 +7,7 @@ import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form"
 import Moment from 'react-moment';
-
+import moment from 'moment'
 
 function Goals(){
      // Setting our component's initial state
@@ -50,12 +50,17 @@ function Goals(){
   function handleFormSubmit(event) {
     console.log("tay");
     event.preventDefault();
-    console.log(formObject);
+    console.log({formObject});
+    let startDate =  moment(formObject.startDate).format();
+    let targetDate = moment(formObject.targetDate).format();
+
+    console.log( startDate );
     if (formObject.name && formObject.date) {
       API.saveGoal({
+        user_id: "0000",
         title: formObject.goal,
-        startdate: formObject.startDate,
-        targetdate: formObject.targetDate,
+        startdate: startDate,
+        targetdate: targetDate,
         reason: formObject.reason,
       }) 
         .then(res => loadGoals())
