@@ -5,7 +5,7 @@ const db = require("../models");
 
 mongoose.connect(
   process.env.MONGODB_URI ||
-  "mongodb://localhost/empowerDB"
+  "mongodb://localhost/empowerDB", { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
 const userSeed = [
@@ -25,6 +25,7 @@ const goalSeed = [
     title: "Cut down to 1 cigarette a day",
     startdate: '2021-01-16',
     targetdate: '2021-04-10', 
+    reason: "I want to have better exercise sessions.",
     date: new Date(Date.now())
   },
   {
@@ -32,6 +33,7 @@ const goalSeed = [
     title: "No drinks",
     startdate: '2021-01-16',
     targetdate: '2021-04-10', 
+    reason: "I need to stop drinking.",
     date: new Date(Date.now())
   },
   {
@@ -39,6 +41,7 @@ const goalSeed = [
     title: "Switch non-alcoholic beer",
     startdate: '2021-01-16',
     targetdate: '2021-04-10', 
+    reason: "I want to be present in my family's life.",
     date: new Date(Date.now())
   }
 ];

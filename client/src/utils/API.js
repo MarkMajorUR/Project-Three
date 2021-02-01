@@ -15,6 +15,7 @@ export default {
   },
   // Saves a book to the database
   saveGoal: function(goalData) {
+    console.log( {goalData} );
     return axios.post("/api/goals", goalData);
   }
 };

@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form"
-
+import Moment from 'react-moment';
+import moment from 'moment'
 
 function Goals(){
      // Setting our component's initial state
@@ -21,10 +22,12 @@ function Goals(){
   // Loads all books and sets them to books
   function loadGoals() {
     API.getGoals()
-      .then(res => 
-        setGoals(res.data)
+      .then(res => {
+        setGoals(res.data);
+        console.log(res.data);
+      }
       )
-      .then(console.log({goals}))
+      .then(console.log(goals))
       .catch(err => console.log(err));
   };
 
@@ -43,17 +46,25 @@ function Goals(){
 
   // When the form is submitted, use the API.saveBook method to save the book data
   // Then reload books from the database
-  const [selectedDate, setSelctedDate] = useState(new Date());
+  // const [selectedDate, setSelctedDate] = useState(new Date());
   function handleFormSubmit(event) {
-    console.log("tay");
     event.preventDefault();
-    console.log(formObject);
-    if (formObject.name && formObject.date) {
+    console.log({formObject});
+    let startDate =  moment(formObject.startDate).format();
+    let targetDate = moment(formObject.targetDate).format();
+
+    // console.log( {startDate} );
+    // console.log( {targetDate} );
+    if (formObject.goal && formObject.startDate && formObject.targetDate) {
       API.saveGoal({
-        goal: formObject.goal,
-        date: formObject.date,
+        // user_id: "0000",
+        title: formObject.goal,
+        startdate: startDate,
+        targetdate: targetDate,
+        reason: formObject.reason,
       }) 
         .then(res => loadGoals())
+        .then(window.location.reload())
         .catch(err => console.log(err));
     }
   };
@@ -69,17 +80,21 @@ function Goals(){
             <Input
               onChange={handleInputChange}
               name="goal"
-              placeholder="goal (required)"
+              placeholder="Goal"
             />
             <Input
               onChange={handleInputChange}
-              name="date"
-              placeholder="MM/DD/YYYY"
-
+              name="startDate"
+              placeholder="MM/DD/YYYY - Goal Start Date"
+            />
+            <Input
+              onChange={handleInputChange}
+              name="targetDate"
+              placeholder="MM/DD/YYYY - Goal Target Date"
             />
             <TextArea
               onChange={handleInputChange}
-              name="synopsis"
+              name="reason"
               placeholder="reason (Optional)"
             />
             <FormBtn
@@ -101,18 +116,18 @@ function Goals(){
                 <ListItem key={goal._id}>
                   <Link to={"/goals/" + goal._id}>
                     <strong>
-                      {goal.name} by {goal.date}
+                      '{goal.title}' by <Moment format="MM-DD-YYYY">{goal.targetdate}</Moment>   
                     </strong>
                   </Link>
                   <DeleteBtn onClick={() => deleteGoal(goal._id)} />
                 </ListItem>
               ))}
-              <FormBtn
+              {/* <FormBtn
               //disabled={!(formObject.name && formObject.date)}
               onClick={handleFormSubmit}
             >
               All Done
-            </FormBtn>
+            </FormBtn> */}
             </List>
           ) : (
             <h3>No Results to Display</h3>
