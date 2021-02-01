@@ -1,0 +1,16 @@
+.createpost{
+    background-color: blue;
+    align-content: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+
+.createpost_imgUpload > input{
+    display: none;
+}
+
+.createpost_UploadBtn{
+    border: none;
+    background-color: white;
+}
