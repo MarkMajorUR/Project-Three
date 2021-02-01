@@ -24,10 +24,6 @@
     "bootstrap": "^4.6.0",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
-<<<<<<< HEAD
     "mongoose": "^5.11.14"
-=======
-    "mongoose": "^5.3.16"
->>>>>>> f67182a75961b3396fdfb18d2aa333bbe39fddbe
   }
 }

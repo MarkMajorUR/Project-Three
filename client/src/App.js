@@ -10,23 +10,7 @@ import  NavLink  from "./components/Navlink";
 function App() {
   return (
     <Router>
-      <NavBar>
-      <NavLink to="/testimonials" activeStyle={{
-      fontWeight: "bold",
-      color: "blue"}}>
-        Testimonials
-      </NavLink>
-      <NavLink to="/goal" activeStyle={{
-      fontWeight: "bold",
-      color: "red"}}>
-        Goals
-      </NavLink>
-      <NavLink to="/signup" activeStyle={{
-      fontWeight: "bold",
-      color: "red" }}>
-        signup
-      </NavLink>
-      </NavBar>
+      <NavBar />
       <div>
         <Switch>
           <Route exact path={["/", "/testimonials"]}>
