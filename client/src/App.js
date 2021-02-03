@@ -25,7 +25,7 @@ function App() {
           <Route exact path="/goals/:id">
             <Detail />
           </Route>
-          <Route exact path={["/", "/signup"]}>
+          <Route exact path={["/", "/register"]}>
             <Signup />
           </Route>
           <Route>  
