@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/testi.css";
-//import NavBar from "../components/NavBar";
+import { List, ListItem } from "../components/List";
 import CreatePost from "../components/create-post";
 
 

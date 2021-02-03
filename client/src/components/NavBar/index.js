@@ -1,24 +1,47 @@
 import React from "react";
-import NavLink  from "../Navlink";
+import "./style.css"
+import { NavLink } from "react-router-dom";
 
 function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-      <NavLink to="/testimonials" activeStyle={{
-      fontWeight: "bold",
-      color: "blue"}}>
-        Testimonials
+      <NavLink to="/testimonials"
+      style={{ 
+        cursor: "pointer", 
+        fontSize: "20px",
+        color: "white"
+      }}
+      activeStyle={{
+        fontWeight: "bold",
+        color: "black"
+      }}> Testimonial
       </NavLink>
-      <NavLink to="/goal" activeStyle={{
-      fontWeight: "bold",
-      color: "red"}}>
-        Goals
+
+      <NavLink to="/goals"
+      style={{ 
+        cursor: "pointer", 
+        fontSize: "20px",
+        color: "white"
+      }}
+      activeStyle={{
+        fontWeight: "bold",
+        color: "black"
+      }}> Goals
       </NavLink>
-      <NavLink to="/signup" activeStyle={{
-      fontWeight: "bold",
-      color: "red" }}>
-        signup
+
+
+      <NavLink to="/signup"
+      style={{ 
+        cursor: "pointer", 
+        fontSize: "20px",
+        color: "white"
+      }}
+      activeStyle={{
+        fontWeight: "bold",
+        color: "black"
+      }}> signup
       </NavLink>
+      
     </nav>
   );
 }

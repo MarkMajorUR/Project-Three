@@ -10,7 +10,7 @@ import  NavBar  from "./components/NavBar";
 function App() {
   return (
     <Router>
-      <NavBar />
+      <NavBar/>
       <div>
         <Switch>
           <Route exact path={["/", "/testimonials"]}>
@@ -25,7 +25,7 @@ function App() {
           <Route exact path="/goals/:id">
             <Detail />
           </Route>
-          <Route exact path={["/", "/signup"]}>
+          <Route exact path={["/signup"]}>
             <Signup />
           </Route>
           <Route>  
