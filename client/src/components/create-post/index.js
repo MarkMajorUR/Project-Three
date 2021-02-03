@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-
+import ReactDOM from "react-dom"
+import "./style.css"
 
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
@@ -30,7 +31,10 @@ function CreatePost(){
 
     return(
         <div className="createpost">
-            <p>add a post</p>
+            <p 
+            className="p">
+                add a post
+            </p>
             <div className="createpost_container" >
                 <textarea className="createpost_textarea"
                 rows="3"
@@ -52,7 +56,7 @@ function CreatePost(){
             </div>
             <button className="createpost_UploadBtn" 
             onClick={handleUpload}
-            style={{color: caption ? "#000" : "lightgray"}}
+            style={{color: caption ? "#000" : "lightgray", cursor: "pointer",}}
             >Upload
             </button>
         </div>

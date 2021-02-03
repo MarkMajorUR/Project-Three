@@ -2,7 +2,9 @@ import React from "react";
 
 function NavLink() {
   return (
-      <a className="navbar-brand" to="/">test</a>
+    <div>
+      <a className="navbar-brand" to="/"></a>
+    </div>
   );
 }
 
