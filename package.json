@@ -24,12 +24,8 @@
     "bootstrap": "^4.6.0",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
-<<<<<<< HEAD
-    "mongoose": "^5.11.14"
-=======
     "moment": "^2.29.1",
     "mongoose": "^5.11.14",
     "react-moment": "^1.1.1"
->>>>>>> 42144b518e290eeeb9fdbb7f3eded72951345825
   }
 }
