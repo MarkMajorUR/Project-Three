@@ -10,11 +10,13 @@ mongoose.connect(
 
 const userSeed = [
   {
-    user: "bobby",
+    name: "bobby smith",
+    email: "bobbysmith@gmail.com",
     password: 'password1234',
   },
   {
-    user: "John",
+    name: "John Maning",
+    email: "jmaning@yahoo.com",
     password: 'password5678',
   }
 ];

@@ -9,7 +9,7 @@ function Signup() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("username is " + username);
+    console.log("\nusername is " + username);
     console.log("password is " + password);
   };
 
