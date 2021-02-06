@@ -20,16 +20,15 @@
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "axios": "^0.18.0",
     "bootstrap": "^4.6.0",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
-<<<<<<< HEAD
-    "mongoose": "^5.11.14"
-=======
+    "material-ui": "^0.20.2",
     "moment": "^2.29.1",
     "mongoose": "^5.11.14",
     "react-moment": "^1.1.1"
->>>>>>> 42144b518e290eeeb9fdbb7f3eded72951345825
   }
 }
