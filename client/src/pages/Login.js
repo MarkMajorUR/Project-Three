@@ -1,20 +1,38 @@
+import AuthAPI from "../utils/clientUserAuth";
+import API from "../utils/API";
+
 import React, { useState } from "react";
 import Container from "../components/Container"
 import Col from "../components/Col";
 import Row from "../components/Row";
+import { Redirect } from "react-router-dom";
 
-function Signup() {
+
+
+function Login() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log("\nusername is " + username);
-    console.log("password is " + password);
+    console.log("\n username is: " + username);
+    console.log(" password is: " + password + " \n ");
+
+    // Post to the server with the input for user info
+    // The post should return the token
+    // Save to local storage
+
+    API.userLogin({email: username, password: password})
+    .then(result => {
+        API.populateLocalStorage(result.data);
+      })
+      .catch(err => console.log(err));
+
   };
 
+
   return (
-    <div>
+    <div className=""> 
       <div className="mt-4">
         <h2>Sign Up</h2>
       </div>
@@ -24,10 +42,11 @@ function Signup() {
             <Col size="12">
               <input
                 className="form-control"
-                type="text"
+                type="email"
                 placeholder="Username"
                 name="username"
                 onChange={e => setUsername(e.target.value)}
+                required
               />
             </Col>
           </Row>
@@ -39,6 +58,7 @@ function Signup() {
                 placeholder="Password"
                 name="password"
                 onChange={e => setPassword(e.target.value)}
+                required
               />
             </Col>
           </Row>
@@ -47,12 +67,12 @@ function Signup() {
           </button>
         </Container>
         <Container className="mt-4">
-          <h3>Hello {username}!</h3>
-          <p>I probably shouldn't tell you this, but your password is {password}!</p>
+          <h3>Hello {username}</h3>
+          <p>Your password is: {password}</p>
         </Container>
       </form>
     </div>
   );
 }
 
-export default Signup;
+export default Login;

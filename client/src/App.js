@@ -1,11 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Goals from "./pages/Goals";
-import Signup from "./pages/signup";
+import Login from "./pages/Login";
 import Detail from "./pages/Detail";
 import Testimonials from "./pages/Testimonials";
 import  NavBar  from "./components/NavBar";
-//import  NavLink  from "./components/Navlink";
 
 function App() {
   return (
@@ -26,7 +25,7 @@ function App() {
             <Detail />
           </Route>
           <Route exact path={["/login"]}>
-            <Signup />
+            <Login />
           </Route>
           <Route>  
           </Route>
