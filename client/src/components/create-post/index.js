@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
 import "./style.css"
 import API from "../../utils/API-cp"
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
@@ -7,18 +6,18 @@ import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
 
 function CreatePost(){
-    // making user data for post
-  // const [user, setUser] = useContext(UserContext).user
+    //making user data for post
+    //const [user, setUser] = useContext(UserContext).user
     const [caption, setCaption] = useState("");
     const [image, setImage] = useState(null);
-    const [testimonialObject, setTestimonialsbject] = useState({})
+    const [testimonialObject, setTestimonialsObject] = useState({})
 
     useEffect(()=>{
-        loadPosts()
+        loadtestimonial()
     }, [] )
 
-    function loadPosts(){
-        API.getPosts()
+    function loadtestimonial(){
+        API.getTestimonial()
         .then(res => {
             setCaption(res.data);
             console.log(res.data);
@@ -29,7 +28,7 @@ function CreatePost(){
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setPostObject({...postObject, [name]: value})
+        setTestimonialsObject({...testimonialObject, [name]: value})
 
         if(e.target.files[0]){
             setImage(e.target.files[0]);
