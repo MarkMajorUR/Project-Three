@@ -3,8 +3,9 @@ import "./style.css"
 import API from "../../utils/API-cp"
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
-
-
+//three things that i want
+// the caption is what the user type
+// the im
 function CreatePost(){
     //making user data for post
     //const [user, setUser] = useContext(UserContext).user
@@ -58,7 +59,9 @@ function CreatePost(){
                 rows="3"
                 placeholder= "place message here"
                 value={caption}
-                onChange={(e) => setCaption(e.target.value), {handleChange}}
+                //onChange={handleChange}
+                onChange={(e) => setCaption(e.target.value)}
+
                 ></textarea>
 
                 <div className="createpost_imgPreview">
