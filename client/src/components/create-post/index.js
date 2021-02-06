@@ -1,17 +1,36 @@
-import React, { useState } from "react";
-
-
+import React, { useState, useEffect } from "react";
+import "./style.css"
+import API from "../../utils/API-cp"
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
-
-
+//three things that i want
+// the caption is what the user type
+// the im
 function CreatePost(){
-    // making user data for post
-  // const [user, setUser] = useContext(UserContext).user
+    //making user data for post
+    //const [user, setUser] = useContext(UserContext).user
     const [caption, setCaption] = useState("");
     const [image, setImage] = useState(null);
+    const [testimonialObject, setTestimonialsObject] = useState({})
+
+    useEffect(()=>{
+        loadtestimonial()
+    }, [] )
+
+    function loadtestimonial(){
+        API.getTestimonial()
+        .then(res => {
+            setCaption(res.data);
+            console.log(res.data);
+        })
+        .then(console.log(caption))
+        .catch(err => console.log(err));
+    }
 
     const handleChange = (e) => {
+        const { name, value } = e.target;
+        setTestimonialsObject({...testimonialObject, [name]: value})
+
         if(e.target.files[0]){
             setImage(e.target.files[0]);
 
@@ -24,21 +43,27 @@ function CreatePost(){
         }
     }
 
-    const handleUpload = () => {
-        
+    const handleUpload = (e) => {
+        e.preventDefault();
     }
 
     return(
         <div className="createpost">
-            <p>add a post</p>
+            <p 
+            className="p">
+                add a post
+            </p>
             <div className="createpost_container" >
-                <textarea className="createpost_textarea"
+                <textarea 
+                className="createpost_textarea"
                 rows="3"
                 placeholder= "place message here"
                 value={caption}
+                //onChange={handleChange}
                 onChange={(e) => setCaption(e.target.value)}
+
                 ></textarea>
-            
+
                 <div className="createpost_imgPreview">
                     <img id="image-preview" alt=""/>
                 </div>
@@ -52,7 +77,7 @@ function CreatePost(){
             </div>
             <button className="createpost_UploadBtn" 
             onClick={handleUpload}
-            style={{color: caption ? "#000" : "lightgray"}}
+            style={{color: caption ? "#000" : "lightgray", cursor: "pointer",}}
             >Upload
             </button>
         </div>

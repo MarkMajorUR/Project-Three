@@ -28,3 +28,4 @@ export default {
     localStorage.setItem('jwtToken', userData.token);
 },
 };
+
