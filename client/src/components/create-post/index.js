@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import "./style.css"
-//import API from "../../utils/API-cp"
+import API from "../../utils/API-cp"
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
 
@@ -18,13 +18,13 @@ function CreatePost(){
     }, [] )
 
     function loadPosts(){
-        // API.getPosts()
-        // .then(res => {
-        //     setCaption(res.data);
-        //     console.log(res.data);
-        // })
-        // .then(console.log(caption))
-        // .catch(err => console.log(err));
+        API.getPosts()
+        .then(res => {
+            setCaption(res.data);
+            console.log(res.data);
+        })
+        .then(console.log(caption))
+        .catch(err => console.log(err));
     }
 
     const handleChange = (e) => {
