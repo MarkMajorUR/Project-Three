@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DeleteBtn from "../components/DeleteBtn";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import { Input, TextArea, FormBtn } from "../components/Form"
@@ -14,12 +14,12 @@ function Goals(){
   const [goals, setGoals] = useState([])
   const [formObject, setFormObject] = useState({})
 
-  // Load all books and store them with setBooks
+  // Load all Goals in the DB and store them with setGoals
   useEffect(() => {
     loadGoals()
   }, [])
 
-  // Loads all books and sets them to books
+  // Loads all Goals and sets them to goals
   function loadGoals() {
     API.getGoals()
       .then(res => {
@@ -68,7 +68,11 @@ function Goals(){
         .catch(err => console.log(err));
     }
   };
-  
+
+  // Check for the authorizatoin token in localStorage.
+  if (!localStorage.userAuth){
+    return <Redirect to="/login" />
+  }
   return (
     <Container fluid>
       <Row>
