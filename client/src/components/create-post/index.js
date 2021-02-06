@@ -11,7 +11,7 @@ function CreatePost(){
   // const [user, setUser] = useContext(UserContext).user
     const [caption, setCaption] = useState("");
     const [image, setImage] = useState(null);
-    const [postObject, setPostObject] = useState({})
+    const [testimonialObject, setTestimonialsbject] = useState({})
 
     useEffect(()=>{
         loadPosts()

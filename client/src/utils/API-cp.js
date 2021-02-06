@@ -3,20 +3,20 @@ import axios from "axios";
 
 export default {
     // Gets all books
-    getPost: function() {
-      return axios.get("/api/postes");
+    getTestimonial: function() {
+      return axios.get("/api/testimonials");
     },
     // Gets the book with the given id
-    getPost: function(id) {
-      return axios.get("/api/postes/" + id);
+    getTestimonial: function(id) {
+      return axios.get("/api/testimonials/" + id);
     },
     // Deletes the book with the given id
-    deletePost: function(id) {
-      return axios.delete("/api/postes/" + id);
+    deleteTestimonial: function(id) {
+      return axios.delete("/api/testimonials/" + id);
     },
     // Saves a book to the database
-    savePost: function(goalData) {
-      console.log( {goalData} );
-      return axios.post("/api/postes", goalData);
+    saveTestimonial: function(testimonialData) {
+      console.log( {testimonialData} );
+      return axios.post("/api/testimonials", testimonialData);
     }
   };
