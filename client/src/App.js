@@ -5,6 +5,8 @@ import Login from "./pages/Login";
 import Detail from "./pages/Detail";
 import Testimonials from "./pages/Testimonials";
 import  NavBar  from "./components/NavBar";
+import HabitBlock from "./components/HabitBlock"
+import "./assets/scss/argon-dashboard-react.scss";
 
 function App() {
   return (
@@ -23,6 +25,9 @@ function App() {
           </Route>
           <Route exact path="/goals/:id">
             <Detail />
+          </Route>
+          <Route exact path="/habit">
+            <HabitBlock />
           </Route>
           <Route exact path={["/login"]}>
             <Login />
