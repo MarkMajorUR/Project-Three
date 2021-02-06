@@ -2,3 +2,9 @@
     background-color: #f3f2ef;
     height: 100vh;
 }
+
+.testiHeading {
+    padding: 2% 40%;
+    align-content: center;
+    justify-content: center;
+}

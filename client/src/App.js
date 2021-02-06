@@ -1,16 +1,15 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Goals from "./pages/Goals";
-import Signup from "./pages/signup";
+import Login from "./pages/Login";
 import Detail from "./pages/Detail";
 import Testimonials from "./pages/Testimonials";
 import  NavBar  from "./components/NavBar";
-//import  NavLink  from "./components/Navlink";
 
 function App() {
   return (
     <Router>
-      <NavBar />
+      <NavBar/>
       <div>
         <Switch>
           <Route exact path={["/", "/testimonials"]}>
@@ -25,8 +24,8 @@ function App() {
           <Route exact path="/goals/:id">
             <Detail />
           </Route>
-          <Route exact path={["/", "/signup"]}>
-            <Signup />
+          <Route exact path={["/login"]}>
+            <Login />
           </Route>
           <Route>  
           </Route>

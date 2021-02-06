@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001/",
   "dependencies": {
     "axios": "^0.18.0",
+    "material-ui": "^0.20.2",
     "react": "^16.13.1",
     "react-datepicker": "^3.4.1",
     "react-dom": "^16.13.1",
