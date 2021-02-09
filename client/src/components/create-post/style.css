@@ -1,8 +1,30 @@
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.p{
+    font-size: 20px;
+    font-weight: 500;
+}
+
 .createpost{
-    background-color: blue;
+    background-color: #fff;
     align-content: center;
     justify-content: center;
     padding: 24px;
+    width: 75%;
+    margin: 0 10%;
+    padding: top 20;
+}
+
+.createpost_textarea{
+    width: 95%;
+    overflow: scroll;
+}
+
+.createpost_container{
+    align-content: center;
+    justify-content: center;
 }
 
 
@@ -13,4 +35,13 @@
 .createpost_UploadBtn{
     border: none;
     background-color: white;
+}
+
+.createpost_UploadBtn{
+    float: right;
+}
+
+#image-preview{
+    max-height: 20%;
+    max-width: 20%;
 }

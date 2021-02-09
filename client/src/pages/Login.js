@@ -21,13 +21,19 @@ function Login() {
     // Post to the server with the input for user info
     // The post should return the token
     // Save to local storage
-
+    
     API.userLogin({email: username, password: password})
-    .then(result => {
-        API.populateLocalStorage(result.data);
+      // .then(res => {
+      //   console.log(" back in the login form1: res \n", res);
+      //   console.log(" back in the login form2: res.data \n", res.data);
+      // })
+      .then(res => {
+        console.log("\nIn .then: \n   ", res)
+        // API.setLocalStorage(res);
+        API.setLocalStorage(res.data);
+        window.location.replace('/goals');
       })
       .catch(err => console.log(err));
-
   };
 
 

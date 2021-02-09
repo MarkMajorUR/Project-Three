@@ -19,12 +19,14 @@ export default {
     return axios.post("/api/goals", goalData);
   },
 
-
-  userLogin: function(obj) {
-    console.log("  In clientUserAuth API: ", obj)
-    return console.log(axios.post('/api/user/login', obj));
+  userLogin: (obj) => {
+    console.log("  In clientUserAuth API: \n    ", obj)
+    return axios.post('/api/user/login', obj);
+    // return console.log(axios.post('/api/user/login', obj));
 },
-  setLocalStorage: function(userData) {
+  setLocalStorage: (userData) => {
+    console.log("\n In setLocalStorage userDatat: \n  ", userData)
     localStorage.setItem('jwtToken', userData.token);
 },
 };
+

@@ -11,13 +11,6 @@ const verifyToken = require("./routes/validate-token");
 
 dotenv.config();
 
-app.use('/gio', (req, res) => {
-  console.log("\nreq", req)
-  res.send({
-    token: 'test123'
-  });
-});
-
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

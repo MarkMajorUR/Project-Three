@@ -11,7 +11,7 @@ import "./assets/scss/argon-dashboard-react.scss";
 function App() {
   return (
     <Router>
-      <NavBar />
+      <NavBar/>
       <div>
         <Switch>
           <Route exact path={["/", "/testimonials"]}>
