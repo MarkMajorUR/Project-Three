@@ -40,9 +40,8 @@
     "material-ui": "^0.20.2",
     "moment": "^2.29.1",
     "mongoose": "^5.11.14",
+    "node-sass": "4.14",
     "react-moment": "^1.1.1",
-    "reactstrap": "^8.9.0",
-    "node-sass": "4.14"
-    
+    "reactstrap": "^8.9.0"
   }
 }

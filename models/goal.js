@@ -10,7 +10,9 @@ const goalSchema = new Schema({
   startdate: { type: Date, required: true },
   targetdate: { type: Date, required: true },
   reason: { type: String, required: false },
-  date: { type: Date, default: Date.now }
+  date: { type: Date, default: Date.now },
+  pass: { type: Number },
+  fail: { type: Number }
 });
 
 const Goal = mongoose.model("Goal", goalSchema);
