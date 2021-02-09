@@ -20,7 +20,7 @@ export default {
   },
 
   userLogin: (obj) => {
-    console.log("  In clientUserAuth API: \n    ", obj)
+    console.log("  In userLogin API: \n    ", obj)
     return axios.post('/api/user/login', obj);
     // return console.log(axios.post('/api/user/login', obj));
 },
