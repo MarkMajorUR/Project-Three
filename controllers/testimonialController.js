@@ -1,6 +1,5 @@
 const db = require("../models");
 
-
 // controller for createPost
 module.exports ={
     findAll: function(req, res){

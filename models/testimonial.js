@@ -9,7 +9,7 @@ const TestimonialSchema = new Schema({
   date: { type: Date, default: Date.now }
 });
 
-const Testimonial = mongoose.model("Timonial", TestimonialSchema);
+const Testimonial = mongoose.model("Testimonial", TestimonialSchema);
 
 
 module.exports = Testimonial;

@@ -4,6 +4,8 @@ import axios from "axios";
 export default {
     // Gets all books
     getTestimonial: function() {
+      // return axios.get("/api/testimonials");
+      console.log("\nIn API getTestimonial");
       return axios.get("/api/testimonials");
     },
     // Gets the book with the given id

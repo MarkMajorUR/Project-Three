@@ -31,7 +31,7 @@ function Goals(){
       .catch(err => console.log(err));
   };
 
-  // Deletes a book from the database with a given id, then reloads books from the db
+  // Deletes a goal from the database with a given id, then reloads goals from the db
   function deleteGoal(id) {
     API.deleteGoal(id)
       .then(res => loadGoals())
@@ -49,13 +49,14 @@ function Goals(){
   // const [selectedDate, setSelctedDate] = useState(new Date());
   function handleFormSubmit(event) {
     event.preventDefault();
-    console.log({formObject});
     let startDate =  moment(formObject.startDate).format();
     let targetDate = moment(formObject.targetDate).format();
 
     // console.log( {startDate} );
     // console.log( {targetDate} );
-    if (formObject.goal && formObject.startDate && formObject.targetDate) {
+    // if (formObject.goal && formObject.startDate && formObject.targetDate) {
+      console.log({formObject});
+      console.log("\n  ----|||------  ")
       API.saveGoal({
         // user_id: "0000",
         title: formObject.goal,
@@ -66,13 +67,13 @@ function Goals(){
         .then(res => loadGoals())
         .then(window.location.reload())
         .catch(err => console.log(err));
-    }
+    // }
   };
 
-  // Check for the authorizatoin token in localStorage.
-  if (!localStorage.userAuth){
-    return <Redirect to="/login" />
-  }
+  // // Check for the authorizatoin token in localStorage.
+  // if (!localStorage.userAuth){
+  //   return <Redirect to="/login" />
+  // }
   return (
     <Container fluid>
       <Row>
@@ -85,16 +86,19 @@ function Goals(){
               onChange={handleInputChange}
               name="goal"
               placeholder="Goal"
+              required
             />
             <Input
               onChange={handleInputChange}
               name="startDate"
               placeholder="MM/DD/YYYY - Goal Start Date"
+              required
             />
             <Input
               onChange={handleInputChange}
               name="targetDate"
               placeholder="MM/DD/YYYY - Goal Target Date"
+              required
             />
             <TextArea
               onChange={handleInputChange}
