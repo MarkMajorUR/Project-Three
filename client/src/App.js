@@ -32,8 +32,6 @@ function App() {
           <Route exact path={["/login"]}>
             <Login />
           </Route>
-          <Route>  
-          </Route>
         </Switch>
       </div>
     </Router>

@@ -3,7 +3,7 @@ import "./style.css"
 import API from "../../utils/API-cp"
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import { Col, Row, Container } from "../Grid";
-
+import Moment from 'react-moment'
 import { Input, TextArea, FormBtn } from "../Form"
 import Jumbotron from "../Jumbotron";
 import { List, ListItem } from "../List";
