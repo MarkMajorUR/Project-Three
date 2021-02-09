@@ -48,6 +48,14 @@ const goalSeed = [
   }
 ];
 
+const testimonialSeed = [
+  {
+    caption: "I love this app!!!",
+    image: "",
+    date: new Date(Date.now())
+  }];
+
+
 db.User
   .remove({})
   .then(() => db.User.collection.insertMany(userSeed))
@@ -65,6 +73,18 @@ db.Goal
   .then(() => db.Goal.collection.insertMany(goalSeed))
   .then(data => {
     console.log(`${data.result.n} Goal records inserted!\n`);
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+
+db.Testimonial
+  .remove({})
+  .then(() => db.Testimonial.collection.insertMany(testimonialSeed))
+  .then(data => {
+    console.log(`${data.result.n} Testimonial records inserted!\n`);
     process.exit(0);
   })
   .catch(err => {
