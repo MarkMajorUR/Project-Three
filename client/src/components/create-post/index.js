@@ -2,37 +2,33 @@ import React, { useState, useEffect } from "react";
 import "./style.css"
 import API from "../../utils/API-cp"
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import DeleteBtn from "../DeleteBtn";
 import { Col, Row, Container } from "../Grid";
-
 import { Input, TextArea, FormBtn } from "../Form"
 import Jumbotron from "../Jumbotron";
 import { List, ListItem } from "../List";
+import Moment from 'react-moment';
 
 
-
-
-
-//three things that i want
+// three things that i want
 // the caption is what the user type
 // the im
 function CreatePost(){
     //making user data for post
     //const [user, setUser] = useContext(UserContext).user
-    const [caption, setCaption] = useState("");
-    const [image, setImage] = useState(null);
-    const [testimonialObject, setTestimonialsObject] = useState({})
-    const [testimonials, setTestimonials] = useState([])
-
+    const [caption, setCaption] = useState(""); // The Testimonial
+    const [image, setImage] = useState(null);   // Image to include with Testimonial
+    const [testimonialObject, setTestimonialsObject] = useState({}); // Testimonial being inputed
+    const [testimonials, setTestimonials] = useState([]);            // Testimonials from DB
 
     useEffect(()=>{
-        loadtestimonial()
-    }, [] );
+        loadtestimonials()
+    }, []);
 
-    function loadtestimonial(){
-        API.getTestimonial()
+    function loadtestimonials(){
+        API.getTestimonials()
         .then(res => {
-            console.log("\n res from DB res: \n \n", res);
-            console.log("\n res from DB res.data: \n \n", res.data);
+            console.log("\n 1. res from DB res: \n", res);
             setTestimonials(res.data);
         })
         .then(console.log(caption))
@@ -60,30 +56,39 @@ function CreatePost(){
 
     return(
         <Container fluid>
-            <h1>The Testimonial Page</h1>
             <Row className="createpost">
-                {/* <div className="createpost"> */}
-                    <p 
-                    className="p">
-                        Add a post
-                    </p>
-                        <Row className="createpost_container" >
-                            <Col size="md-6">
-                            <TextArea 
-                            className="createpost_textarea"
-                            rows="3"
-                            placeholder= "place message here"
-                            value={caption}
-                            //onChange={handleChange}
-                            onChange={(e) => setCaption(e.target.value)}
-                            >
-                            </TextArea>
-                            </Col>
+                <Row>
+                    <Col size="md-4">
+                        <p className="p">
+                            Add a post
+                        </p>
+                    </Col>
+                        {/* <Row className="createpost_container" > */}
+                    <Col size="md-8">
+                        <TextArea 
+                        className="createpost_textarea"
+                        rows="3"
+                        placeholder= "Place a message here"
+                        value={caption}
+                        //onChange={handleChange}
+                        onChange={(e) => setCaption(e.target.value)}
+                        >
+                        </TextArea>
+
+                        
+                        <button className="createpost_UploadBtn" 
+                        // onClick={handleUpload}
+                        onClick={handleChange}
+                        style={{color: caption ? "#000" : "lightgray", cursor: "pointer",}}
+                    >
+                        Post
+                    </button>
+                    </Col>
 
                             <Col size="md-6" className="createpost_imgPreview">
                                 <img id="image-preview" alt=""/>
                             </Col>
-                        </Row>
+                </Row>
 
                         {/* <div className="createpost_container" >
                             <textarea 
@@ -109,17 +114,10 @@ function CreatePost(){
                             {handleChange} />
                         </div> */}
 
-                    <button className="createpost_UploadBtn" 
-                    onClick={handleUpload}
-                    style={{color: caption ? "#000" : "lightgray", cursor: "pointer",}}
-                    >
-                        Upload
-                    </button>
                 {/* </div> */}
             </Row>
 
             <Row>
-                <hr></hr>
                 <Jumbotron>
                     <h1>Testimonial List</h1>
                 </Jumbotron>
@@ -134,9 +132,15 @@ function CreatePost(){
                                 '{testimonial.caption}' by <Moment format="MM-DD-YYYY">{goal.targetdate}</Moment>   
                                 </strong>
                             </Link> */}
-                            <p to={"/goals/" + testimonial._id}>
+                            <p>
                                 <strong>
-                                '{testimonial.caption}' posted: <Moment format="MM-DD-YYYY">{testimonial.date}</Moment>   
+                                '{testimonial.caption}'    
+                                </strong>
+                            
+                            </p>
+                            <p>
+                                <strong>
+                                posted: <Moment format="MM-DD-YYYY">{testimonial.date}</Moment>
                                 </strong>
                             </p>
 
