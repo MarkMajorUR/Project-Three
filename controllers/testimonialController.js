@@ -6,10 +6,7 @@ module.exports ={
         db.Testimonial
         .find(req.query)
         .sort({ date: -1 })
-        .then(dbModel => {
-          const userstesTestimonials = dbModel.filter((Testimonial) => Testimonial.user_id === req.body.Testimonial_id)
-          res.json(userstesTestimonials)
-        })
+        .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err));
     },
     findById: function(req, res) {

@@ -130,12 +130,6 @@ function Goals(){
                   <DeleteBtn onClick={() => deleteGoal(goal._id)} />
                 </ListItem>
               ))}
-              {/* <FormBtn
-              //disabled={!(formObject.name && formObject.date)}
-              onClick={handleFormSubmit}
-            >
-              All Done
-            </FormBtn> */}
             </List>
           ) : (
             <h3>No Results to Display</h3>
