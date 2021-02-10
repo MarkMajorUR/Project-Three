@@ -7,6 +7,7 @@ import Moment from 'react-moment'
 import { Input, TextArea, FormBtn } from "../Form"
 import Jumbotron from "../Jumbotron";
 import { List, ListItem } from "../List";
+import DeleteBtn from "../DeleteBtn";
 
 
 
@@ -57,6 +58,11 @@ function CreatePost(){
     const handleUpload = (e) => {
         e.preventDefault();
     }
+    function deleteTestimonaials(id) {
+        API.deleteTestimonial(id)
+          .then(res => loadtestimonial())
+          .catch(err => console.log(err));
+      }
 
     return(
         <Container fluid>
@@ -141,7 +147,7 @@ function CreatePost(){
                             </p>
 
 
-                            <DeleteBtn onClick={() => deleteGoal(goal._id)} />
+                            <DeleteBtn onClick={() => deleteTestimonaials(testimonial._id)} />
                             </ListItem>
                         ))}
                         
