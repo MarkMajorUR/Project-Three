@@ -31,8 +31,8 @@ app.use(routes);
 
 
 // Connect to the Mongo DB
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/empowerDB",
-mongoose.connect("mongodb://localhost/empowerDB",
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/empowerDB",
+// mongoose.connect("mongodb://localhost/empowerDB",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
