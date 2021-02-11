@@ -51,12 +51,10 @@ const goalSeed = [
 const testimonialSeed = [
   {
     caption: "I love this app!!!",
-    image: "",
     date: new Date(Date.now())
   },
   {
     caption: "This app helped my brother. Thank you.",
-    image: "",
     date: new Date(Date.now())
   }
 ];
