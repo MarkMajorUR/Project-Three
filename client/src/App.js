@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Goals from "./pages/Goals";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Detail from "./pages/Detail";
 import Testimonials from "./pages/Testimonials";
 import  NavBar  from "./components/NavBar";
@@ -32,7 +33,8 @@ function App() {
           <Route exact path={["/login"]}>
             <Login />
           </Route>
-          <Route>  
+          <Route exact path={["/register"]}>  
+            <Register />
           </Route>
         </Switch>
       </div>
