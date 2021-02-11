@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css"
 import API from "../../utils/API-cp"
-import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import DeleteBtn from "../DeleteBtn";
 import { Col, Row, Container } from "../Grid";
 import { Input, TextArea, FormBtn } from "../Form"
@@ -9,15 +8,9 @@ import Jumbotron from "../Jumbotron";
 import { List, ListItem } from "../List";
 import Moment from 'react-moment';
 
-
-// three things that i want
-// the caption is what the user type
-// the im
 function CreatePost(){
-    //making user data for post
-    //const [user, setUser] = useContext(UserContext).user
     const [caption, setCaption] = useState(""); // The Testimonial
-    const [image, setImage] = useState(null);   // Image to include with Testimonial
+
     const [testimonialObject, setTestimonialsObject] = useState({}); // Testimonial being inputed
     const [testimonials, setTestimonials] = useState([]);            // Testimonials from DB
 
@@ -25,141 +18,134 @@ function CreatePost(){
         loadtestimonials()
     }, []);
 
-    function loadtestimonials(){
+    const loadtestimonials = () => {
         API.getTestimonials()
         .then(res => {
-            console.log("\n 1. res from DB res: \n", res);
+            // console.log("\n 1. res from DB res: \n", res);
             setTestimonials(res.data);
         })
         .then(console.log(caption))
         .catch(err => console.log(err));
     };
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setTestimonialsObject({...testimonialObject, [name]: value})
+      // Handles updating component state when the user types into the input field
+    const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    console.log("\nname: ", name)
+    console.log("value: ", value)
+    setTestimonialsObject({...testimonialObject, [name]: value})
+  };
 
-        if(e.target.files[0]){
-            setImage(e.target.files[0]);
+    // // Handles updating component state when the user types into the input field
+    // function handleInputChange(event) {
+    //     const { name, value } = event.target;
+    //     console.log("\nname: ", name)
+    //     console.log("\nvalue: ", value)
+    //     setTestimonialsObject(value)
+    //     console.log(testimonialObject)
+    //   };
 
-            var selectedImgSrc = URL.createObjectURL(e.target.files[0]);
-            var imgPreview = document.getElementById("image-preview");
-            
-            imgPreview.src = selectedImgSrc;
-            imgPreview.style.display="block"
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+        console.log({caption});
+        if (caption) {
+          console.log("\nCAPTION: ", caption);
+          API.saveTestimonial({
+            caption: caption,
+          }) 
+            .then(res => loadtestimonials())
+            .then(window.location.reload())
+            .catch(err => console.log(err));
         }
-    };
+      };
 
-    const handleUpload = (e) => {
-        e.preventDefault();
-    }
+      // Delete testimonial
+      const deleteTestimonial = (id) => {
+          console.log("\nID IN DELETE: ", id )
+        API.deleteTestimonial(id)
+          .then(res => loadtestimonials())
+          .catch(err => console.log(err));
+      }
+
 
     return(
         <Container fluid>
-            <Row className="createpost">
+            <Row>
                 <Row>
                     <Col size="md-4">
-                        <p className="p">
+                        <div className="createpost">
+                        <p>
                             Add a post
                         </p>
+                        </div>
                     </Col>
                         {/* <Row className="createpost_container" > */}
-                    <Col size="md-8">
+                    <Col size="md-7">
                         <TextArea 
                         className="createpost_textarea"
                         rows="3"
                         placeholder= "Place a message here"
                         value={caption}
-                        //onChange={handleChange}
                         onChange={(e) => setCaption(e.target.value)}
+                        // onChange={(e) => setTestimonialsObject(e.target.value)}
+                        // onChange={handleInputChange}
+                        name="caption"
                         >
                         </TextArea>
 
-                        
+                    </Col>
+                    <Col size="md-1">
                         <button className="createpost_UploadBtn" 
                         // onClick={handleUpload}
-                        onClick={handleChange}
-                        style={{color: caption ? "#000" : "lightgray", cursor: "pointer",}}
-                    >
-                        Post
-                    </button>
+                        onClick={handleFormSubmit}
+                        style={{color: caption ? "#000" : "lightgray", cursor: "pointer"}}
+                        >
+                            Post
+                        </button>
                     </Col>
-
-                            <Col size="md-6" className="createpost_imgPreview">
-                                <img id="image-preview" alt=""/>
-                            </Col>
                 </Row>
 
-                        {/* <div className="createpost_container" >
-                            <textarea 
-                            className="createpost_textarea"
-                            rows="3"
-                            placeholder= "place message here"
-                            value={caption}
-                            //onChange={handleChange}
-                            onChange={(e) => setCaption(e.target.value)}
-
-                            ></textarea>
-
-                            <div className="createpost_imgPreview">
-                                <img id="image-preview" alt=""/>
-                            </div>
-                        </div>
-
-                        <div className="createpost_imgUpload">
-                            <label htmlFor="fileInput">
-                            <AddAPhotoIcon style={{ cursor: "pointer", fontSize: "20px"}} /> 
-                            </label>
-                            <input id="fileInput" type="file" accept="image/*" onChange=
-                            {handleChange} />
-                        </div> */}
-
-                {/* </div> */}
             </Row>
 
             <Row>
-                <Jumbotron>
+                <Col size="md-6 sm-12">
+                    {/* <Jumbotron>
                     <h1>Testimonial List</h1>
-                </Jumbotron>
-                {console.log(testimonials)}
-                {testimonials.length ? (
-                    <List>
-                        {testimonials.map(testimonial => (
-                            <ListItem key={testimonial._id}>
+                    </Jumbotron> */}
+                    {console.log(testimonials)}
+                    {testimonials.length ? (
+                        <List>
+                            {testimonials.map(testimonial => (
+                                <ListItem key={testimonial._id}>
 
-                            {/* <Link to={"/goals/" + testimonial._id}>
-                                <strong>
-                                '{testimonial.caption}' by <Moment format="MM-DD-YYYY">{goal.targetdate}</Moment>   
-                                </strong>
-                            </Link> */}
-                            <p>
-                                <strong>
-                                '{testimonial.caption}'    
-                                </strong>
-                            
-                            </p>
-                            <p>
-                                <strong>
-                                posted: <Moment format="MM-DD-YYYY">{testimonial.date}</Moment>
-                                </strong>
-                            </p>
-
-
-                            <DeleteBtn onClick={() => deleteGoal(goal._id)} />
-                            </ListItem>
-                        ))}
-                        
-                    {/* <FormBtn
-                    //disabled={!(formObject.name && formObject.date)}
-                    onClick={handleFormSubmit}
-                    >
-                    All Done
-                    </FormBtn> */}
-                    </List>
-                ) : (
-                    <h3>No Testimonials to Display</h3>
-                )}
-
+                                {/* <Link to={"/goals/" + testimonial._id}>
+                                    <strong>
+                                    '{testimonial.caption}' by <Moment format="MM-DD-YYYY">{goal.targetdate}</Moment>   
+                                    </strong>
+                                </Link> */}
+                                <Row>
+                                    <p>
+                                        <strong>
+                                        '{testimonial.caption}'    
+                                        </strong>
+                                    </p>
+                                </Row>
+                                <Row>
+                                    <p>
+                                        <strong>
+                                        posted: <Moment format="MM-DD-YYYY">{testimonial.date}</Moment>
+                                        </strong>
+                                    </p>
+                                </Row>
+                                <DeleteBtn onClick={() => deleteTestimonial(testimonial._id)} />
+                                </ListItem>
+                            ))}
+                        </List>
+                    ) : (
+                        <h3>No Testimonials to Display</h3>
+                    )}
+                    
+                </Col>
 
             </Row>
 

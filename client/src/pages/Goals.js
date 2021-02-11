@@ -11,8 +11,8 @@ import moment from 'moment'
 
 function Goals(){
      // Setting our component's initial state
-  const [goals, setGoals] = useState([])
-  const [formObject, setFormObject] = useState({})
+  const [goals, setGoals] = useState([]);
+  const [formObject, setFormObject] = useState({});
 
   // Load all Goals in the DB and store them with setGoals
   useEffect(() => {
@@ -114,7 +114,7 @@ function Goals(){
           </form>
         </Col>
         <Col size="md-6 sm-12">
-          <hr></hr>
+          {/* <hr></hr> */}
           <Jumbotron>
             <h1>My Goals List</h1>
           </Jumbotron>
