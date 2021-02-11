@@ -40,7 +40,7 @@ function Login() {
   return (
     <div className=""> 
       <div className="mt-4">
-        <h2>Login</h2>
+        <h2>Create an Account</h2>
       </div>
       <form onSubmit={handleSubmit}>
         <Container className="mt-3 px-5">
@@ -49,8 +49,20 @@ function Login() {
               <input
                 className="form-control"
                 type="email"
-                placeholder="email"
+                placeholder="Name"
                 name="username"
+                onChange={e => setUsername(e.target.value)}
+                required
+              />
+            </Col>
+          </Row>
+          <Row className="form-group">
+            <Col size="12">
+              <input
+                className="form-control"
+                type="email"
+                placeholder="Email"
+                name="useremail"
                 onChange={e => setUsername(e.target.value)}
                 required
               />

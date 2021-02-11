@@ -20,10 +20,10 @@ export default {
   },
 
   userLogin: (obj) => {
-    console.log("  In clientUserAuth API: \n    ", obj)
-    return axios.post('/api/user/login', obj);
-    // return console.log(axios.post('/api/user/login', obj));
-},
+    console.log("\n  In clientUserAuth API: \n    ", obj);
+    // return axios.post('/api/user/login', obj);
+    return console.log(axios.post('/api/user/login', obj));
+  },
   setLocalStorage: (userData) => {
     console.log("\n In setLocalStorage userDatat: \n  ", userData)
     localStorage.setItem('jwtToken', userData.token);

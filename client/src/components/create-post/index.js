@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css"
-import API from "../../utils/API-cp"
+import APIT from "../../utils/API-cp"
 import DeleteBtn from "../DeleteBtn";
 import { Col, Row, Container } from "../Grid";
 import { Input, TextArea, FormBtn } from "../Form"
@@ -19,7 +19,7 @@ function CreatePost(){
     }, []);
 
     const loadtestimonials = () => {
-        API.getTestimonials()
+        APIT.getTestimonials()
         .then(res => {
             // console.log("\n 1. res from DB res: \n", res);
             setTestimonials(res.data);
@@ -50,7 +50,7 @@ function CreatePost(){
         console.log({caption});
         if (caption) {
           console.log("\nCAPTION: ", caption);
-          API.saveTestimonial({
+          APIT.saveTestimonial({
             caption: caption,
           }) 
             .then(res => loadtestimonials())
@@ -62,7 +62,7 @@ function CreatePost(){
       // Delete testimonial
       const deleteTestimonial = (id) => {
           console.log("\nID IN DELETE: ", id )
-        API.deleteTestimonial(id)
+        APIT.deleteTestimonial(id)
           .then(res => loadtestimonials())
           .catch(err => console.log(err));
       }

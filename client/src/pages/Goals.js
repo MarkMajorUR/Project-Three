@@ -52,13 +52,9 @@ function Goals(){
     let startDate =  moment(formObject.startDate).format();
     let targetDate = moment(formObject.targetDate).format();
 
-    // console.log( {startDate} );
-    // console.log( {targetDate} );
-    // if (formObject.goal && formObject.startDate && formObject.targetDate) {
-      console.log({formObject});
-      console.log("\n  ----|||------  ")
+      // console.log({formObject});
+      // console.log("\n  ----|||------  ")
       API.saveGoal({
-        // user_id: "0000",
         title: formObject.goal,
         startdate: startDate,
         targetdate: targetDate,
@@ -67,7 +63,6 @@ function Goals(){
         .then(res => loadGoals())
         .then(window.location.reload())
         .catch(err => console.log(err));
-    // }
   };
 
   // // Check for the authorizatoin token in localStorage.
