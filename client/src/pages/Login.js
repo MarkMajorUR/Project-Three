@@ -23,17 +23,35 @@ function Login() {
     // Save to local storage
     
     API.userLogin({email: username, password: password})
-        .then(res => {
-          console.log(" back in the login form1: res \n", res);
-          console.log(" back in the login form2: res.data \n", res.data);
-        })
+
       .then(res => {
-        console.log("\nIn .then: \n   ", res)
-        API.setLocalStorage(res);
-        API.setLocalStorage(res.data);
+        console.log("\n1. In .then: \n   ", {res})
+        console.log("\n2. In .then: \n   ", res.data.data.token)
+        // API.setLocalStorage(res);
+        API.setLocalStorage(res.data.data.token);
+        return
         window.location.replace('/goals');
       })
-      .catch(err => console.log(err));
+      // .catch(err => console.log(err));
+      .catch(err => {
+        let message = err.response.data;
+        console.log(message.error)
+        console.log({message})
+
+        switch (message.error) {
+          case '"email" must be a valid email':
+            alert('Email must be a valid email')
+            break;
+          case '"password" length must be at least 6 characters long':
+            alert('Password is incorrect')
+            break;
+          case 'Password is wrong':
+            alert('Password is incorrect')
+            break;
+          default:
+            alert('email or password is incorrect')
+        }
+      });
   };
 
 
