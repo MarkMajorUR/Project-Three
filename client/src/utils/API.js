@@ -22,10 +22,17 @@ export default {
   userLogin: (obj) => {
     console.log("\n  In clientUserAuth API: \n    ", obj);
     // return axios.post('/api/user/login', obj);
-    return console.log(axios.post('/api/user/login', obj));
+    return Promise.resolve(axios.post('/api/user/login', obj));
   },
   setLocalStorage: (userData) => {
-    console.log("\n In setLocalStorage userDatat: \n  ", userData)
-    localStorage.setItem('jwtToken', userData.token);
-},
+    console.log("\n 1s. In setLocalStorage userDatat: \n  ", userData)
+    // localStorage.setItem('jwtToken', JSON.stringify(userData.data));
+    localStorage.setItem('jwtToken', userData);
+    return
+  },
+  userRegister: (obj) => {
+    console.log("\n  In userRegister API: \n    ", obj);
+    // return console.log(axios.post('/api/user/register', obj));
+    return Promise.resolve(axios.post('/api/user/register', obj));
+  }
 };

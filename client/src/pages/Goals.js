@@ -66,7 +66,8 @@ function Goals(){
   };
 
   // // Check for the authorizatoin token in localStorage.
-  // if (!localStorage.userAuth){
+  // console.log("\nlocalStorage: \n",localStorage)
+  // if (!localStorage.jwtoken){
   //   return <Redirect to="/login" />
   // }
   return (

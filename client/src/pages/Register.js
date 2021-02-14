@@ -1,5 +1,4 @@
 import API from "../utils/API";
-
 import React, { useState } from "react";
 import Container from "../components/Container"
 import Col from "../components/Col";
@@ -8,32 +7,56 @@ import { Redirect } from "react-router-dom";
 
 
 
-function Login() {
+function Register() {
   const [username, setUsername] = useState();
+  const [useremail, setUseremail] = useState();
   const [password, setPassword] = useState();
 
   const handleSubmit = e => {
   // function handleSubmit(){
     e.preventDefault();
     console.log("\n username is: " + username);
+    console.log(" email is: " + useremail + " \n ");
     console.log(" password is: " + password + " \n ");
 
     // Post to the server with the input for user info
     // The post should return the token
     // Save to local storage
     
-    API.userLogin({email: username, password: password})
-        .then(res => {
-          console.log(" back in the login form1: res \n", res);
-          console.log(" back in the login form2: res.data \n", res.data);
-        })
+    API.userRegister({name: username, email: useremail, password: password})
+      // .then(res => {
+      //   console.log(" back in the REGISTER form1: res \n", res);
+      //   console.log(" back in the REGISTER form2: res.data \n", res.data);
+      // })
       .then(res => {
-        console.log("\nIn .then: \n   ", res)
-        API.setLocalStorage(res);
-        API.setLocalStorage(res.data);
-        window.location.replace('/goals');
+        // console.log("\nIn .then: \n   ", res)
+        // console.log(" back in the REGISTER form1: res \n", res);
+        // console.log(" back in the REGISTER form2: res.data \n", res.data);
+        alert('Account created successfully')
+        window.location.replace('/login');
       })
-      .catch(err => console.log(err));
+      // .catch(err => console.log("err: \n", {err}));
+      // .catch(err => alert(`Error has occurred!`));
+      .catch(err => {
+        let message = err.response.data;
+        console.log(message.error)
+        console.log({message})
+
+        switch (message.error) {
+          case '"name" length must be at least 6 characters long':
+            alert('Name length must be at least 6 characters long')
+            break;
+          case '"password" length must be at least 6 characters long':
+            alert('Password length must be at least 6 characters long')
+            break;
+          case 'Email already exists':
+            alert('Email already exists. Please use a different email.')
+            break;
+          default:
+            alert('Account created successfully')
+        }
+      }
+      );
   };
 
 
@@ -48,7 +71,7 @@ function Login() {
             <Col size="12">
               <input
                 className="form-control"
-                type="email"
+                type="text"
                 placeholder="Name"
                 name="username"
                 onChange={e => setUsername(e.target.value)}
@@ -63,7 +86,7 @@ function Login() {
                 type="email"
                 placeholder="Email"
                 name="useremail"
-                onChange={e => setUsername(e.target.value)}
+                onChange={e => setUseremail(e.target.value)}
                 required
               />
             </Col>
@@ -84,13 +107,10 @@ function Login() {
             Submit
           </button>
         </Container>
-        {/* <Container className="mt-4">
-          <h3>Hello {username}</h3>
-          <p>Your password is: {password}</p>
-        </Container> */}
+
       </form>
     </div>
   );
 }
 
-export default Login;
+export default Register;
